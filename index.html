@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inventario - Ferreteria</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app">
+    <!-- LOGIN -->
+    <section id="view-login" class="view active">
+      <div class="card center">
+        <div class="avatar">🔧</div>
+        <h2>Ferretería - Inventario</h2>
+        <input id="login-usuario" placeholder="usuario" />
+        <input id="login-pass" placeholder="contraseña" type="password" />
+        <div class="row">
+          <button id="btn-login" class="btn primary">Entrar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD / MENU -->
+    <section id="view-dashboard" class="view">
+      <div class="topbar">
+    <h2 class="menu-title">📦 Panel principal</h2>
+
+      <div class="menu">
+    <button id="menu-inventario" class="big-btn inventario">📋 Inventario</button>
+    <button id="menu-proveedores" class="big-btn proveedores">👷 Proveedores</button>
+    <button id="menu-ventas" class="big-btn ventas">💲 Ventas</button>
+</div>
+
+<p> </p>
+<p> </p>
+<p> </p>
+<div class="top-actions">
+    <button id="btn-logout" class="btn danger">Cerrar sesión</button>
+</div>
+
+    </section>
+
+    <!-- INVENTARIO: lista -->
+    <section id="view-inventario" class="view">
+      <div class="topmid">
+        <button class="btn back" data-target="dashboard">←</button>
+        <h3>Inventario</h3>
+        <div class="top-actions">
+          <button id="btn-new-product" class="btn success">+ producto</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="table-products">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRODUCTO: formulario -->
+     <div class="pantalla-producto">
+    <section id="view-product-form" class="view">
+      <div class="topmid">
+        <button class="btn back" data-target="inventario">←</button>
+        <h3 id="product-form-title">Nuevo producto</h3>
+      </div>
+    
+
+      <div class="card small">
+        <label>Código <input id="p-codigo" /></label>
+        <label>Descripción <input id="p-nombre" /></label>
+        <label>Precio <input id="p-precio" type="number" step="0.01" /></label>
+        <label>Cantidad <input id="p-cantidad" type="number" /></label>
+        <label>Stock mínimo <input id="p-stock-min" type="number" /></label>
+        <div class="row">
+          <button id="btn-save-product" class="btn success">Guardar</button>
+          <button id="btn-clear-product" class="btn">Limpiar</button>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- PROVEEDORES: lista -->
+    <section id="view-proveedores" class="view">
+      <div class="topmid">
+        <button class="btn back" data-target="dashboard">←</button>
+        <h3>Proveedores</h3>
+        <div class="top-actions">
+          <button id="btn-new-provider" class="btn success">+ proveedor</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="table-providers">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Correo</th>
+              <th>Producto</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PROVEEDOR: formulario -->
+     <div class="pantalla-proveedor">
+    <section id="view-provider-form" class="view">
+      <div class="topmid">
+        <button class="btn back" data-target="proveedores">←</button>
+        <h3 id="provider-form-title">Nuevo proveedor</h3>
+      </div>
+
+      <div class="card small1">
+        <label>Nombre <input id="pr-nombre" /></label>
+        <label>Teléfono <input id="pr-telefono" /></label>
+        <label>Correo <input id="pr-correo" /></label>
+        <label>Producto (suministra) <input id="pr-producto" /></label>
+        <div class="row">
+          <button id="btn-save-provider" class="btn success">Guardar</button>
+          <button id="btn-clear-provider" class="btn">Limpiar</button>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- VENTAS: registrar -->
+    <section id="view-ventas" class="view">
+      <div class="topmid">
+        <button class="btn back" data-target="dashboard">←</button>
+        <h3>Registrar venta</h3>
+      </div>
+
+      <div class="card1">
+        <label>Producto (código) <input id="v-codigo" /></label>
+        <label>Cantidad <input id="v-cantidad" type="number" value="1" /></label>
+        <div class="row">
+          <button id="btn-add-sale" class="btn success">Registrar venta</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <h4>Ventas registradas</h4>
+        <table id="table-sales">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Cant.</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODAL / CONFIRM -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-card">
+        <p id="modal-text">¿Confirmar acción?</p>
+        <div class="row">
+          <button id="modal-ok" class="btn success">Aceptar</button>
+          <button id="modal-cancel" class="btn danger">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
